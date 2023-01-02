@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>task-06</title>
+  </head>
+  <style>
+    /* for desktop */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .container {
+      display: grid;
+      height: 100vh;
+      /* gap: 1px; */
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows:auto 1fr auto
+    }
+    .items {
+      /* border: 1px solid black; */
+      text-align: center;
+      /* color: red;
+      font-variant: small-caps; */
+      /* font-size: 3vw; */
+      /* background-color: rgb(255, 247, 0); */
+    }
+    .header {
+      grid-column: 1 / span 12;
+      background-color: #020e29;
+      z-index: 3;
+      color: white;
+      font-size: 4vw;
+    }
+    .nav {
+      grid-column: 1 / span 2;
+      background-color: #2e2c2c;
+      border-right: 1px solid black;
+    }
+    .nav ul {
+      list-style: none;
+      position: sticky;
+      top: 0;
+    }
+    .nav > ul > li {
+      line-height: 50px;
+      color: white;
+      border-bottom: 1px solid black;
+      font-variant: normal;
+      font-size: 2em;
+    }
+    .nav > ul > li:hover {
+      font-variant: small-caps;
+      background-color: black;
+      color: red;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .nav > ul > li.active {
+      color: orange;
+      text-decoration: underline;
+    }
+    .article {
+      grid-column: 3 / span 8;
+      color: black;
+    }
+    .article p{
+        font-size: 18px;
+        text-align: justify;
+        padding: 20px 30px;
+        font-variant: normal;
+    }
+    h2{
+      font-size: 42px;
+      padding: 10px 0px;
+      text-decoration: underline;
+      font-variant: small-caps;
+    }
+
+    .ads {
+      grid-column: 11 / span 2;
+      background-color: yellow;
+      border-left: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+    .notifications {
+      position: sticky;
+      top: 0;
+    }
+    .notification-items {
+      font-weight: normal;
+      list-style: none;
+      font-variant: normal;
+      font-size: 1em;
+      text-align: center;
+      color: green;
+
+      /* animation properties */
+
+      -webkit-transform: translateY(
+        100%
+      ); /* for chrome safari and other browsers */
+
+      -moz-transform: translateY(100%); /*for firefox browser*/
+
+      transform: translateY(100%);
+
+      animation: my-animation 20s linear infinite;
+      -moz-animation: my-animation 20s linear infinite;
+      -webkit-animation: my-animation 20s linear infinite;
+    }
+    @keyframes my-animation {
+      from {
+        transform: translateY(30%);
+      }
+      to {
+        transform: translateY(-100%);
+      }
+    }
+    /* for firefox */
+    @-moz-keyframes my-animation {
+      from {
+        -moz-transform: translateY(100%);
+      }
+      to {
+        -moz-transform: translateY(-100%);
+      }
+    }
+    /* for chrome */
+    @-webkit-keyframes my-animation {
+      from {
+        -webkit-transform: translateY(100%);
+      }
+      to {
+        -webkit-transform: translateY(-100%);
+      }
+    }
+    .notification-items li {
+      padding: 15px 0px;
+    }
+    .notification-items a {
+      font-variant: normal;
+      font-size: 12px;
+      color: rgb(0, 0, 255);
+      text-decoration: none;
+    }
+    .notification-items a:hover {
+      text-decoration: underline;
+      color: blue;
+      cursor: pointer;
+      font-variant: small-caps;
+      font-size: 15px;
+    }
+    .footer {
+      grid-column: 1 / span 12;
+      color: white;
+      background-color: #020e29;
+      z-index: 3;
+    }
+    .footer>ul{
+        list-style: none;
+        display: flex;
+        justify-content: center;
+      }
+    .footer>ul>li{
+      padding: 10px 50px;
+      font-size: 22px;
+    }
+    /* layout for mobiles */
+    @media screen and (max-width: 720px) {
+      .container {
+        grid-template-rows: auto auto 1fr auto auto;
+      }
+      .items {
+        /* border: 2px solid black; */
+      }
+      .header {
+        grid-column: 1 / span 12;
+        font-size: 2.8em;
+      }
+      .nav {
+        grid-column: 1 / span 12;
+        grid-row: 2;
+      }
+      .nav > ul {
+        display: flex;
+      }
+      .nav > ul > li {
+        padding: 0px 10px;
+        border: none;
+        font-size:.8em;
+      }
+      .article {
+        grid-column: 1 / span 12;
+        grid-row: 3;
+      }
+      h2{
+        font-size: 1.8em;
+        padding: 0px;
+        color: red;
+      }
+      .article p{
+        font-size: 0.9em;
+        padding-top: 8px;
+      }
+      .ads {
+        grid-column: 1 / span 12;
+        grid-row: 4;
+      }
+      .notification-items {
+      font-size: 1em;
+      display: flex;
+      /* animation properties */
+
+      -webkit-transform: translateX(
+        100%
+      ); /* for chrome safari and other browsers */
+
+      -moz-transform: translateX(100%); /*for firefox browser*/
+
+      transform: translateX(100%);
+
+      animation: my-animation 30s linear infinite;
+      -moz-animation: my-animation 30s linear infinite;
+      -webkit-animation: my-animation 30s linear infinite;
+    }
+    @keyframes my-animation {
+      from {
+        transform: translateX(20%);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+    /* for firefox */
+    @-moz-keyframes my-animation {
+      from {
+        -moz-transform: translateX(20%);
+      }
+      to {
+        -moz-transform: translateX(-100%);
+      }
+    }
+    /* for chrome */
+    @-webkit-keyframes my-animation {
+      from {
+        -webkit-transform: translateX(20%);
+      }
+      to {
+        -webkit-transform: translateX(-100%);
+      }
+    }
+    .notification-items li {
+      padding: 15px 20px;
+    }
+      .footer {
+        grid-column: 1 / span 12;
+        grid-row: 5;
+      }
+      .footer>ul{
+        list-style: none;
+        display: flex;
+      }
+      .footer>ul>li{
+        font-size: 12px;
+        padding-right:  15px;
+      }
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="items header">Header</div>
+      <div class="items nav">
+        <ul>
+          <li class="active">Home</li>
+          <li>About</li>
+          <li>Developer</li>
+          <li>Testing</li>
+          <li>Pishing</li>
+        </ul>
+      </div>
+      <div class="items article"> 
+         <h2>Chat GPT </h2>
+        <p>
+          Chat GPT is a variant of the popular language model GPT (short for
+          "Generative Pre-training Transformer") that is specifically designed
+          for chatbot applications. It was developed by OpenAI, the leading
+          research organization in the field of artificial intelligence.
+          <br /><br />
+          One of the main advantages of Chat GPT is that it can generate
+          human-like text, making it well-suited for tasks such as conversation
+          generation and language translation. It does this by using machine
+          learning techniques to analyze and learn from a large dataset of human
+          conversation. This allows Chat GPT to understand the nuances and
+          subtleties of human language, such as context, tone, and syntax.
+          <br /><br />
+          Another key feature of Chat GPT is that it can be fine-tuned for
+          specific tasks. This means that it can be trained on a smaller dataset
+          that is relevant to a specific task, such as customer service or
+          language translation. This allows Chat GPT to become more specialized
+          and efficient at performing that task.
+          <br /><br />
+          One of the main limitations of Chat GPT is that it is a large and
+          complex model, which can make it difficult to deploy and use in
+          real-world applications. It also requires a lot of computational
+          resources to run, which can be a challenge for organizations with
+          limited resources.
+          <br /><br />
+          Despite these limitations, Chat GPT has shown promising results in a
+          number of applications, and it is likely to continue to be a valuable
+          tool in the development of chatbots and other natural language
+          processing systems. <br>
+        </p>
+        <h2>Five Ways To Boost your Creativity</h2>
+        <p>
+          Boosting creativity can seem like a daunting task, but it doesn't have to be. Here are five simple ways to get your creative juices flowing:
+        <br><br>
+    1. Take breaks and relax: Taking regular breaks and giving yourself time to relax can actually help boost your creativity. When you're constantly on the go and under stress, your brain doesn't have the opportunity to make new connections and come up with creative ideas. Taking breaks allows your brain to rest and recharge, which can lead to increased creativity.
+    <br><br>
+    2. Exercise and get plenty of sleep: Exercise and sleep are essential for maintaining overall health and well-being, but they can also boost creativity. Exercise has been shown to increase blood flow to the brain, which can help stimulate new ideas. Similarly, getting enough sleep allows your brain to process and consolidate new information, which can lead to increased creativity.
+    <br><br>
+    3. Surround yourself with creative people: Surrounding yourself with creative people can help spark new ideas and inspire you to think outside the box. Consider joining a club or group that shares your interests, or simply spend time with friends and family who are known for their creativity.
+    <br><br>
+    4. Learn something new: Learning something new can help stimulate your brain and encourage creative thinking. Take a class, try a new hobby, or simply spend some time researching a topic that interests you. The more you expose yourself to new ideas and ways of thinking, the more likely you are to come up with creative solutions to problems.
+    <br><br>
+    5. Get out of your comfort zone: Stepping out of your comfort zone can be scary, but it can also be a great way to boost creativity. Trying new things and experiencing new situations can help stimulate your brain and encourage you to think in new and creative ways. So go ahead and take that painting class, try your hand at stand-up comedy, or travel to a new city. The more you push yourself, the more your creativity will grow.
+    <br><br>
+    By incorporating these simple habits into your daily routine, you can help boost your creativity and come up with innovative ideas.
+    </p>
+    </div>
+      <div class="items ads">
+        <div class="notifications">
+          <div class="notification-items">
+            <li>
+              i am notification 1 Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eius, voluptates. <br /><a href="#"
+                >read more</a
+              >
+            </li>
+            <li>
+              i am notification 2 Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eius, voluptates. <br /><a href="#"
+                >read more</a
+              >
+            </li>
+            <li>
+              i am notification 3 Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eius, voluptates. <br /><a href="#"
+                >read more</a
+              >
+            </li>
+            <li>
+              i am notification 4 Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eius, voluptates. <br /><a href="#"
+                >read more</a
+              >
+            </li>
+            <li>
+              i am notification 5 Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eius, voluptates. <br /><a href="#"
+                >read more</a
+              >
+            </li>
+            <li>
+              i am notification 6 Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eius, voluptates. <br /><a href="#"
+                >read more</a
+              >
+            </li>
+            <li>
+              i am notification 7 Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eius, voluptates. <br /><a href="#"
+                >read more</a
+              >
+            </li>
+            <li>
+              i am notification 8 Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eius, voluptates. <br /><a href="#"
+                >read more</a
+              >
+            </li>
+            <li>
+              i am notification 9 Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eius, voluptates. <br /><a href="#"
+                >read more</a
+              >
+            </li>
+            <li>
+              i am notification 10 Lorem ipsum dolor sit amet consectetur
+              adipisicing elit. Eius, voluptates. <br /><a href="#"
+                >read more</a>
+            </li>
+          </div>
+        </div>
+      </div>
+      <div class="items footer">
+        <ul>
+          <li>&copy; copyright 2023  </li>
+        <li> All rights reserved.</li>
+        <li>Arsalan Rather</li>
+      </ul></div>
+    </div>
+  </body>
+</html>
